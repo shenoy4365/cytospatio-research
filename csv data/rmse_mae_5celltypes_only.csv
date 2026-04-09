@@ -1,0 +1,95 @@
+model,n_cells,n_residuals_5types,MSE_5types,RMSE_5types,MAE_5types,Median_AE_5types,Q95_AE_5types,RMSE_rank,MAE_rank,avg_rank
+95th,43900,219500,4.644805773978646e-07,0.0006815281193009315,0.00037668832638210187,0.0001294473289449,0.0016357733926410142,1.0,1.0,1.0
+baseline,43900,219520,4.721957621563969e-07,0.0006871650181407643,0.00037944299296156233,0.00012982846132895,0.0016224038424710898,2.0,2.0,2.0
+90th,43900,219500,4.7733586147866e-07,0.0006908949713803539,0.00039061372598538113,0.00012919148198275,0.0015971212021212542,3.0,3.0,3.0
+85th,43900,219500,6.024988181278027e-07,0.0007762079735018204,0.0004457477339013139,0.0001316326088319,0.00183456266995595,4.0,4.0,4.0
+80th,43900,219500,6.767380173021092e-07,0.0008226408799118295,0.0004845823404529333,0.0001374608265898,0.001905467905452974,5.0,5.0,5.0
+70th,43900,219500,9.693238308813065e-07,0.0009845424474756313,0.000609081757155187,0.00018270757119455,0.0022280687272250893,6.0,6.0,6.0
+60th,43900,219500,1.3275235792012797e-06,0.001152182094636642,0.0007414745884292891,0.0002786422242014,0.0025429640575098194,7.0,7.0,7.0
+50th,43900,219500,1.7514339680432618e-06,0.0013234175335257055,0.0008747740432820903,0.00040782377992705,0.002883435954999512,8.0,8.0,8.0
+
+Column Definitions:
+
+  model
+
+  - Which model was tested
+  - Values: "baseline", "50th", "60th", "70th", "80th", "85th", "90th", "95th"
+
+  n_cells
+
+  - Number of original cells analyzed (always 43,900)
+  - This is the same for all models to ensure fair comparison
+
+  n_residuals_5types
+
+  - Total number of residuals analyzed
+  - Formula: 43,900 cells × 5 types = 219,500 residuals
+  - Same for all models (except baseline has 219,520 due to slight format difference)
+
+  MSE_5types (Mean Squared Error)
+
+  - Average of squared residuals: mean(residuals²)
+  - Penalizes large errors heavily
+  - Used to calculate RMSE
+  - Example: 95th has MSE = 4.64×10⁻⁷
+
+  RMSE_5types (Root Mean Squared Error) ⭐
+
+  - Square root of MSE: √(MSE)
+  - Primary metric for comparing models
+  - Measures average prediction error magnitude
+  - Lower is better
+  - Example: 95th has RMSE = 0.000682 (best)
+
+  MAE_5types (Mean Absolute Error)
+
+  - Average of absolute residuals: mean(|residuals|)
+  - Secondary metric for comparing models
+  - More robust to outliers than RMSE
+  - Lower is better
+  - Example: 95th has MAE = 0.000377 (best)
+
+  Median_AE_5types (Median Absolute Error)
+
+  - Median of absolute residuals
+  - Very robust to outliers
+  - Shows "typical" error size
+  - Lower is better
+  - Example: 95th has Median = 0.000129
+
+  Q95_AE_5types (95th Percentile Absolute Error)
+
+  - 95% of residuals have error below this value
+  - Shows how large the "worst" 5% of errors are
+  - Helps identify if model has catastrophic failures
+  - Lower is better
+  - Example: 95th has Q95 = 0.00164
+
+  RMSE_rank
+
+  - Ranking based on RMSE (1 = best, 8 = worst)
+  - 95th percentile = rank 1 (lowest RMSE)
+
+  MAE_rank
+
+  - Ranking based on MAE (1 = best, 8 = worst)
+  - 95th percentile = rank 1 (lowest MAE)
+
+  avg_rank
+
+  - Average of RMSE_rank and MAE_rank
+  - Used to create final ranking
+  - Formula: (RMSE_rank + MAE_rank) / 2
+  - Lower is better
+  - Models are sorted by this column
+
+  Quick Interpretation Guide:
+
+  Most Important Columns:
+  - RMSE_5types - Primary accuracy metric
+  - MAE_5types - Secondary accuracy metric
+  - avg_rank - Final ranking
+
+  Additional Context:
+  - Median_AE_5types - Typical error size
+  - Q95_AE_5types - Extreme error size

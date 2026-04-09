@@ -1,0 +1,60 @@
+# Personal notes and development files
+markdown notes/
+research reports/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+
+# R files
+.Rhistory
+.RData
+.Rproj.user
+
+# Data files (not tracked — share separately)
+# *.csv
+# *.tsv
+# *.xlsx
+example/
+colon tissue files/
+option2/
+
+# Output and result directories
+cytospatio outcomes/
+output percentile results/
+output_baseline/
+output_percentile_50/
+output_percentile_60/
+output_percentile_70/
+output_percentile_80/
+output_percentile_90/
+output_*/
+example_output/
+option2/output/
+plots/
+
+# OS files
+.DS_Store
+._.DS_Store
+._*
+.AppleDouble
+.LSOverride
+Thumbs.db
+mac cache/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temporary files
+*.log
+*.tmp
+
+# Markdown + Note Files
+*.md
